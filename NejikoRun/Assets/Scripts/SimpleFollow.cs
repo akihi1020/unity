@@ -5,23 +5,23 @@ using UnityEngine;
 public class SimpleFollow : MonoBehaviour
 {
 
-    Vector3 diff;
-    public GameObject target;
-    public float followSpeed;
+	Vector3 diff;
+	public GameObject target;
+	public float followSpeed;
     
-    // Use this for initialization
-    void Start()
-    {
-        diff = target.transform.position - transform.position;		
-    }
+	// Use this for initialization
+	void Start()
+	{
+		diff = target.transform.position - transform.position;		
+	}
 	
-    // Updateと同じタイミングで呼ばれ、最後に実行される
-    void LateUpdate()
-    {
-        transform.position = Vector3.Lerp(
-            transform.position,
-            target.transform.position - diff,
-            Time.deltaTime * followSpeed
-        );
-    }
+	// Updateと同じタイミングで呼ばれ、最後に実行される
+	void LateUpdate()
+	{
+		transform.position = Vector3.Lerp(
+			transform.position,
+			target.transform.position - diff,
+			Time.deltaTime * followSpeed
+		);
+	}
 }
