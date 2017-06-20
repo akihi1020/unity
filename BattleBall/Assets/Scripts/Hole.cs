@@ -9,6 +9,11 @@ public class Hole : MonoBehaviour
     // ボールのTagを指定
     public string activeTag;
 
+    void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     // ボールが入っているかを返す
     public bool IsFallIn()
     {
@@ -33,5 +38,16 @@ public class Hole : MonoBehaviour
                 fallIn = true;
             }
         }
+    }
+
+    public void setActive(Vector3 position)
+    {
+        gameObject.transform.position = position;
+        gameObject.SetActive(true);
+    }
+
+    public bool isActive()
+    {
+        return gameObject.activeSelf;
     }
 }

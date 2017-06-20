@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LifeController: MonoBehaviour
 {
-    const int MaxLifeCount = 3;
+    const int MaxLifeCount = 4;
 
     int lifeCount = MaxLifeCount;
 
@@ -21,16 +21,5 @@ public class LifeController: MonoBehaviour
     public void increaseLife()
     {
         lifeCount--;
-    }
-
-    void OnGUI()
-    {
-        // 残りショット数を+の数で表示
-        string label = "";
-        for (int i = 0; i < lifeCount; i++) {
-            label = label + "+";
-        }
-
-        GUI.Label(new Rect(0, 15, 100, 30), label);
     }
 }
