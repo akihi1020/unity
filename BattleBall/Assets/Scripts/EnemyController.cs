@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
         enemyCount--;
     }
 
+    /*
     void OnGUI()
     {
         // 残り敵数を●の数で表示
@@ -27,4 +28,5 @@ public class EnemyController : MonoBehaviour
 
         GUI.Label(new Rect(0, 30, 100, 60), label);
     }
+    */
 }

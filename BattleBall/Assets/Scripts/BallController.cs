@@ -12,6 +12,8 @@ public class BallController : MonoBehaviour
     public EnemyController enemy;
     public Hole hole;
     public Slider slider;
+    public GameObject effectPrefab;
+    public Vector3 effectRotation;
 
     bool onLeft = false;
     bool onRight = false;
@@ -87,6 +89,14 @@ public class BallController : MonoBehaviour
         position.y += 5f;
         position.z -= y;
         Camera.main.transform.position = position;
+
+        // todo:残り1体になったら、最後の敵の場所をゴールにする
+        if (enemy.getEnemyCount() == 1 && !hole.isActive()) {
+            GameObject tagObject = GameObject.FindGameObjectWithTag("Enemy");
+            Vector3 positionHole = tagObject.transform.position;
+            GameObject.Destroy(tagObject.gameObject);
+            hole.setActive(positionHole);
+        }
     }
 
     public void OnLeftDown()
@@ -133,10 +143,14 @@ public class BallController : MonoBehaviour
             // ヒットしたオブジェクトは削除
             Destroy(otherObj.gameObject);
 
-            // todo:残り1体になったら、最後の敵の場所をゴールにする
-            if (enemy.getEnemyCount() == 0 && !hole.isActive()) {
-                Vector3 position = otherObj.transform.position;
-                hole.setActive(position);
+            // エフェクト
+            if (effectPrefab != null) {
+                // 敵のポジションにエフェクトを生成
+                Instantiate(
+                    effectPrefab,
+                    otherObj.transform.position,
+                    Quaternion.Euler(effectRotation)
+                );
             }
         }
     }
