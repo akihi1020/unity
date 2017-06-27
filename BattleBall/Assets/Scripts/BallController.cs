@@ -67,6 +67,7 @@ public class BallController : MonoBehaviour
             transform.GetComponent<Rigidbody>().AddForce(v);
             power = 0;
             life.decreaseLife();
+            slider.value = 0;
         }
 
         // 矢印キー操作
@@ -90,7 +91,7 @@ public class BallController : MonoBehaviour
         position.z -= y;
         Camera.main.transform.position = position;
 
-        // todo:残り1体になったら、最後の敵の場所をゴールにする
+        // 残り1体になったら、最後の敵の場所をゴールにする
         if (enemy.getEnemyCount() == 1 && !hole.isActive()) {
             GameObject tagObject = GameObject.FindGameObjectWithTag("Enemy");
             Vector3 positionHole = tagObject.transform.position;
